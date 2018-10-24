@@ -6,6 +6,7 @@ const app = express();
 const arr = ['hello', 'world', 'test'];
 
 app.set('view engine', 'ejs');
+
 app.use(bodyParser.urlencoded({ extend: true }));
 
 app.get('/', (req, res) => res.render('index', { arr: arr }));

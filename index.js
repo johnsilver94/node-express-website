@@ -11,5 +11,4 @@ database()
   })
   .catch(() => {
     console.error('Unable to connect to database');
-    //process.exit(1);
   });

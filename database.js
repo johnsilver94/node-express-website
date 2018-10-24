@@ -13,7 +13,13 @@ module.exports = () => {
 
     mongoose.connect(
       config.MONGO_URL,
-      { useMongoClient: true }
+      {
+        useNewUrlParser: true,
+        auth: {
+          user: config.user,
+          password: config.password
+        }
+      }
     );
   });
 };
