@@ -4,7 +4,7 @@
   "repository": "https://github.com/silverfang94/NodeExpress.git",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js",
+    "start": "cross-env PORT=3001 node index.js",
     "dev": "nodemon index.js"
   },
   "devDependencies": {
@@ -17,8 +17,10 @@
   },
   "dependencies": {
     "body-parser": "^1.18.3",
+    "cross-env": "^5.2.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
+    "mongoose": "^5.3.6",
     "nodemon": "^1.18.4"
   }
 }
