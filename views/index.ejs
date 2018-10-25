@@ -1,20 +1,15 @@
-<!Doctype html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-</head>
-
-<body>
-    <a href="/create">Add</a>
-    <ul>
-        <% arr.forEach(function(item){%>
-        <li>
-            <%=item%>
-        </li>
-        <%})%>
-    </ul>
-</body>
-
-</html>
+<% include C:\Users\ion\Desktop\VSCode\NodeExpress\layouts/header.ejs %>
+<a href="/create">Add</a>
+<ul>
+    <% posts.forEach(function(post){%>
+    <li>
+        <b>
+            <%=post.title%>
+        </b>
+        <br>
+        <%=post.body%>
+    </li>
+    <br>
+    <%})%>
+</ul>
+<% include C:\Users\ion\Desktop\VSCode\NodeExpress\layouts/footer.ejs %>
