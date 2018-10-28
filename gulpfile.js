@@ -5,6 +5,8 @@ const autoprefixer = require('gulp-autoprefixer');
 const cssnano = require('gulp-cssnano');
 //const browserSync = require('browser-sync');
 const plumber = require('gulp-plumber');
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglifyjs');
 /*eslint-disable node/no-unpublished-require*/
 
 gulp.task('scss', () => {
@@ -29,7 +31,19 @@ gulp.task('browser-sync', () => {
   });
 });
 */
-gulp.task('default', [/*'browser-sync',*/ 'scss'], () => {
+gulp.task('scripts', () =>
+  gulp
+    .src([
+      'dev/js/auth.js'
+      //
+    ])
+    .pipe(concat('scripts.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest('public/javascripts'))
+);
+
+gulp.task('default', [/*'browser-sync',*/ 'scss', 'scripts'], () => {
   gulp.watch('dev/scss/**/*.scss', ['scss']);
   //gulp.watch('views/**/*.ejs', browserSync.reload);
+  gulp.watch('dev/js/**/*.js', ['scripts']);
 });
