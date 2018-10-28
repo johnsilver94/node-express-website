@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const staticAsset = require('static-asset');
 const path = require('path');
 
 const app = express();
@@ -7,6 +8,7 @@ const app = express();
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extend: true }));
+app.use(staticAsset(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //jQuery
