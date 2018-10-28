@@ -4,8 +4,8 @@
   "repository": "https://github.com/silverfang94/NodeExpress.git",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env PORT=3001 node index.js",
-    "dev": "gulp & nodemon index.js"
+    "start": "gulp",
+    "dev": "nodemon index.js"
   },
   "devDependencies": {
     "browser-sync": "^2.26.3",

@@ -3,14 +3,10 @@ const gulp = require('gulp');
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const cssnano = require('gulp-cssnano');
-const browserSync = require('browser-sync');
+//const browserSync = require('browser-sync');
 const plumber = require('gulp-plumber');
-const nodemon = require('gulp-nodemon');
 /*eslint-disable node/no-unpublished-require*/
 
-gulp.task('nodemon', function() {
-  nodemon({ script: 'index.js' });
-});
 gulp.task('scss', () => {
   return gulp
     .src('dev/scss/**/*.scss')
@@ -22,18 +18,18 @@ gulp.task('scss', () => {
       })
     )
     .pipe(cssnano())
-    .pipe(gulp.dest('public/stylesheets'))
-    .pipe(browserSync.reload({ stream: true }));
+    .pipe(gulp.dest('public/stylesheets'));
+  //.pipe(browserSync.reload({ stream: true }));
 });
-
+/*
 gulp.task('browser-sync', () => {
   browserSync({
     server: { baseDir: 'views' },
     notify: false
   });
 });
-
-gulp.task('default', ['browser-sync', 'scss'], () => {
+*/
+gulp.task('default', [/*'browser-sync',*/ 'scss'], () => {
   gulp.watch('dev/scss/**/*.scss', ['scss']);
-  gulp.watch('views/**/*.ejs', browserSync.reload);
+  //gulp.watch('views/**/*.ejs', browserSync.reload);
 });
