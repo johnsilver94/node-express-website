@@ -1,7 +1,7 @@
 <div class="sidebar">
   <div class="box auth">
 
-
+  <% if(!user.id && !user.login) { %>
     <form method="post" class="login">
       <h2>Auth</h2>
       <div class="form-group">
@@ -37,6 +37,11 @@
         <button class="register-button">Sign Up</button>
       </div>
     </form>
+    <% } else { %>
+    <p>
+    Hello, <%= user.login %>! <a href="/api/auth/logout">Log out</a>
+  </p>
+    <% } %>
 
   </div>
   <div class="box">box2</div>

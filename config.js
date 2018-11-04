@@ -10,5 +10,6 @@ module.exports = {
   /*'mongodb://cretuion94:8octombrie081094silver_fang@ds042677.mlab.com:42677/nodeexpress',  'mongodb://@ds042677.mlab.com:42677/nodeexpress',*/
   user: 'cretuion94',
   password: '8octombrie081094silver_fang',
-  IS_PRODUCTION: process.env.NODE_ENV === 'production'
+  IS_PRODUCTION: process.env.NODE_ENV === 'production',
+  SESSION_SECRET: process.env.SESSION_SECRET
 };
