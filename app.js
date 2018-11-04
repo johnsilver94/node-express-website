@@ -5,10 +5,13 @@ const path = require('path');
 
 //database
 const config = require('./config');
+const routes = require('./routes');
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 mongoose.set('debug', config.IS_PRODUCTION);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
 
 mongoose.connection
   .on('error', error => console.log(error))
@@ -36,6 +39,7 @@ const app = express();
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extend: true }));
+app.use(bodyParser.json());
 app.use(staticAsset(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -46,6 +50,8 @@ app.use(express.static(path.join(__dirname, 'node_modules', 'jquery', 'dist')));
 app.get('/', (req, res) => {
   res.render('index');
 });
+
+app.use('/api/auth', routes.auth);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
