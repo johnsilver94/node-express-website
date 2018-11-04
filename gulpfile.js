@@ -34,8 +34,9 @@ gulp.task('browser-sync', () => {
 gulp.task('scripts', () =>
   gulp
     .src([
-      'dev/js/auth.js'
-      //
+      'dev/js/auth.js',
+      'dev/js/post.js',
+      'node_modules/medium-editor/dist/js/medium-editor.min.js'
     ])
     .pipe(concat('scripts.js'))
     .pipe(uglify())
