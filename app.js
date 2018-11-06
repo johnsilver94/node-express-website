@@ -11,6 +11,8 @@ const config = require('./config');
 const routes = require('./routes');
 const mongoose = require('mongoose');
 
+//const mocks = require('./mocks');
+
 mongoose.Promise = global.Promise;
 mongoose.set('debug', config.IS_PRODUCTION);
 mongoose.set('useFindAndModify', false);
@@ -22,6 +24,7 @@ mongoose.connection
   .once('open', () => {
     const info = mongoose.connections[0];
     console.log(`Connected to ${info.host}:${info.port}/${info.name}`);
+    //mocks();
   });
 
 mongoose.connect(
@@ -62,6 +65,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules', 'jquery', 'dist')));
 
 //routers
+/*
 app.get('/', (req, res) => {
   const id = req.session.userId;
   const login = req.session.userLogin;
@@ -72,7 +76,10 @@ app.get('/', (req, res) => {
     }
   });
 });
+*/
 
+//routes
+app.use('/', routes.archive);
 app.use('/api/auth', routes.auth);
 app.use('/post', routes.post);
 

@@ -8,7 +8,11 @@ const schema = new Schema(
       type: String,
       required: true
     },
-    body: { type: String }
+    body: { type: String },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }
   },
   { timestamps: true }
 );
