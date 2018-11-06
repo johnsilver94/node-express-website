@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const URLSlugs = require('mongoose-url-slugs');
 
 const schema = new Schema(
   {
@@ -10,6 +11,12 @@ const schema = new Schema(
     body: { type: String }
   },
   { timestamps: true }
+);
+
+schema.plugin(
+  URLSlugs('title', {
+    field: 'url'
+  })
 );
 
 schema.set('toJSON', { virtuals: true });
