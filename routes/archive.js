@@ -64,16 +64,7 @@ router.get('/posts/:post', async (req, res, next) => {
         const comments = await models.Comment.find({
           post: post.id,
           parent: { $exists: false }
-        }); //;
-        // .populate({
-        //   path: 'children',
-        //   populate: {
-        //     path: 'children',
-        //     populate: {
-        //       path: 'children'
-        //     }
-        //   }
-        // });
+        });
 
         console.log(comments);
         res.render('post/post', {
