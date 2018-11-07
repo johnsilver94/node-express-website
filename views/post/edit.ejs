@@ -21,18 +21,28 @@
             <label for="post-body">Text</label>
             <textarea id="post-body"><%= typeof post !== 'undefined' ? post.body : '' %></textarea>
           </div>
+
+          <div id="fileinfo">
+          <% post.uploads.forEach(function(upload) {  %>
+            <div class="img-container">
+              <img src="/uploads<%= upload.path %>" alt="" />
+            </div>
+            <% }) %>
+               <label for="file" class="custom-file-upload">
+                <input type="file" name="file" id="file" required /> +
+              </label>
+        </div>
+
+
           <input type="hidden" id="post-id" name="postId" value="<%= typeof post !== 'undefined' ? post.id : '' %>">
+
+
+
           <div class="buttons">
             <button class="save-button secondary-inverse">Save as draft</button>
             <button class="publish-button">Publish</button>
           </div>
         </form>
-
-        <form method="POST" enctype="multipart/form-data" id="fileinfo">
-        <input type="hidden" id="post-id" name="postId" value="<%= typeof post !== 'undefined' ? post.id : '' %>">
-        <input type="file" name="file" id="file" required />
-        <button class="upload-button">Upload</button>
-      </form>
 
       </div>
 

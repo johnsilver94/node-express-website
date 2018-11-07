@@ -25,7 +25,8 @@ const storage = diskStorage({
     const userId = req.session.userId;
     const fileName = Date.now().toString(36) + path.extname(file.originalname);
     const dir = req.dir;
-    console.log(req.body); // { postId: '5b059790979c832a1215016a' }
+    console.log(req.body);
+
     // find post
     const post = await models.Post.findById(req.body.postId);
     if (!post) {
@@ -40,9 +41,12 @@ const storage = diskStorage({
     });
     // write to post
     const uploads = post.uploads;
-    uploads.push(upload.id);
+    uploads.unshift(upload.id);
     post.uploads = uploads;
     await post.save();
+
+    req.filePath = dir + '/' + fileName;
+
     cb(null, fileName);
   },
   sharp: (req, file, cb) => {
@@ -91,7 +95,8 @@ router.post('/image', (req, res) => {
 
     res.json({
       ok: !error,
-      error
+      error,
+      filePath: req.filePath
     });
   });
 });

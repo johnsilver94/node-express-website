@@ -60,6 +60,7 @@ app.use(bodyParser.urlencoded({ extend: true }));
 app.use(bodyParser.json());
 app.use(staticAsset(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static(path.join(__dirname, config.DESTINATION)));
 
 //jQuery
 app.use(express.static(path.join(__dirname, 'node_modules', 'jquery', 'dist')));
