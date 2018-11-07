@@ -38,9 +38,18 @@
       </div>
     </form>
     <% } else { %>
-    <p>
-    Hello, <%= user.login %>! <a href="/api/auth/logout">Log out</a>
-  </p>
+    <ul>
+    <li>Hello,
+      <a href="/users/<%= user.login %>">
+        <%= user.login %>
+      </a>!</li>
+    <li>
+      <a href="/post/add">Add post</a>
+    </li>
+    <li>
+      <a href="/api/auth/logout">Logout</a>
+    </li>
+  </ul>
     <% } %>
 
   </div>

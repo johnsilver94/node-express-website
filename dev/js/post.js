@@ -1,13 +1,5 @@
 /* eslint-disable no-undef */
 $(function() {
-  // eslint-disable-next-line
-  var editor = new MediumEditor('#post-body', {
-    placeholder: {
-      text: '',
-      hideOnClick: true
-    }
-  });
-
   // remove errors
   function removeErrors() {
     $('.post-form p.error').remove();
@@ -20,13 +12,20 @@ $(function() {
   });
 
   // publish
-  $('.publish-button').on('click', function(e) {
+  $('.publish-button, .save-button').on('click', function(e) {
     e.preventDefault();
     removeErrors();
 
+    var isDraft =
+      $(this)
+        .attr('class')
+        .split(' ')[0] === 'save-button';
+
     var data = {
       title: $('#post-title').val(),
-      body: $('#post-body').html()
+      body: $('#post-body').val(),
+      isDraft: isDraft,
+      postId: $('#post-id').val()
     };
 
     $.ajax({
@@ -44,8 +43,31 @@ $(function() {
           });
         }
       } else {
-        //$('.register h2').after('<p class="success">Отлично!</p>');
         $(location).attr('href', '/');
+        if (isDraft) {
+          $(location).attr('href', '/post/edit/' + data.post.id);
+        } else {
+          $(location).attr('href', '/posts/' + data.post.url);
+        }
+      }
+    });
+  });
+
+  // upload
+  $('#fileinfo').on('submit', function(e) {
+    e.preventDefault();
+    var formData = new FormData(this);
+    $.ajax({
+      type: 'POST',
+      url: '/upload/image',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function(r) {
+        console.log(r);
+      },
+      error: function(e) {
+        console.log(e);
       }
     });
   });

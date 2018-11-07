@@ -9,14 +9,29 @@ const schema = new Schema(
       required: true
     },
     body: { type: String },
+    url: {
+      type: String
+    },
     owner: {
       type: Schema.Types.ObjectId,
       ref: 'User'
     },
+    status: {
+      type: String,
+      enum: ['published', 'draft'],
+      required: true,
+      default: 'published'
+    },
     commentCount: {
       type: Number,
       default: 0
-    }
+    },
+    uploads: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Upload'
+      }
+    ]
   },
   { timestamps: true }
 );
